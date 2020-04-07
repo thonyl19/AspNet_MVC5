@@ -1,0 +1,6 @@
+﻿@using Utility;
+@using FileMode = System.IO.FileMode;
+@{
+    var z1 = ((ViewDataDictionary)ViewData).Keys;
+}
+@z1.ToJson();

@@ -1,0 +1,8 @@
+﻿@using Utility;
+@using FileMode = System.IO.FileMode;
+@{
+    var z = new ViewDataDictionary { { "A", FileMode.Create }, { "B", FileMode.Append } };
+    var arr = new string[] { "1", "2" };
+    var z1 = ((ViewDataDictionary)ViewData).Keys;
+}
+@z1.ToJson();
