@@ -1,6 +1,9 @@
 ﻿@using Utility;
 @using FileMode = System.IO.FileMode;
 @{
+    /*
+     搭配 ViewData.cshtml 演示利用 ViewDataDictionary 傳遞資料
+     */
     var z1 = ((ViewDataDictionary)ViewData).Keys;
 }
 @z1.ToJson();
