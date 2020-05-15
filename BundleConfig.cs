@@ -1,6 +1,6 @@
 ﻿using System.Web.Optimization;
 
-namespace MVC5
+namespace Bundle
 {
 	public static class eBundle
 	{
