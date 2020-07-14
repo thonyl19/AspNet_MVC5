@@ -1,0 +1,34 @@
+﻿@using Newtonsoft.Json;
+@using Frame.Code;
+@{
+	Layout = "";
+	ViewBag.Title = RES.BLL.Face.CHECKOUT;
+	//var wipServices = new BLL.MES.WIPServices();
+	//var data = wipServices.GetLotInfoCheck("New-20190411-03");
+	var as_FullFileName = FileHelper.MapPath("~/Areas/MES/Views/WIP/_demo.json");
+	object data;//= new object();
+	try
+	{
+		var json_options = new JsonSerializerSettings()
+		{
+			DateFormatHandling = DateFormatHandling.MicrosoftDateFormat,
+			DateFormatString = "yyyy-MM-dd HH:mm:ss",
+			NullValueHandling = NullValueHandling.Include,
+			Error = (serializer, err) =>
+			{
+				err.ErrorContext.Handled = true;
+			}
+		};
+		TextReader lo_TextReader = new StreamReader(as_FullFileName);
+		string _s = lo_TextReader.ReadToEnd();
+		data = JsonConvert.DeserializeObject<BLL.MES.DataViews.LotData>(_s, json_options);
+	}
+	catch (Exception Ex)
+	{
+		throw new Exception($"Read_SerializeJson 序列讀檔失敗({as_FullFileName})");
+	}
+
+
+}
+
+@Html.Partial("StationCheckout", data)
